@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>SpringEL 표현식</h1>
+<ul>Object
+    <!-- Object에서 타임리프가 값을 model에서 값을 꺼내오는 방법
+    프로퍼티 접근방법도 쓸 수 있다.
+    ${user.username}
+    ${user['username']}이렇게 작성해서 문자를 넘길수 있다.
+    ${user.getUsername()} 이렇게 직접 가져와서 할 수 도 있다. -->
+    <li>${user.username} = <span th:text="${user.username}"></span></li>
+    <li>${user['username']} = <span th:text="${user['username']}"></span></li>
+    <li>${user.getUsername()} = <span th:text="${user.getUsername()}"></span></
+    li>
+</ul>
+<ul>List
+    <!-- List에서 타임리프가 값을 model에서 값을 꺼내오는 방법
+    ${users[0].username} users의 0번을 출력한다.
+     ${users[0]['username']}
+      ${users[0].getUsername()} 요런 방법들을 사용할 수 있다.-->
+    <li>${users[0].username} = <span th:text="${users[0].username}"></span></li>
+    <li>${users[0]['username']} = <span th:text="${users[0]['username']}"></span></li>
+    <li>${users[0].getUsername()} = <span th:text="${users[0].getUsername()}"></span></li>
+</ul>
+<ul>Map
+    <!--Map에서 타임리프가 값을 model에서 값을 꺼내오는 방법
+    key로 값을 꺼내와야 하기 때문에 key를 넣어준다.
+    1번 방법 : ${userMap['userA'].username}
+    2번 방법 : ${userMap['userA']['username']}
+    3번 방법 : ${userMap['userA'].getUsername()}
+    -->
+    <li>${userMap['userA'].username} = <span th:text="${userMap['userA'].username}"></span></li>
+    <li>${userMap['userA']['username']} = <span th:text="${userMap['userA']['username']}"></span></li>
+    <li>${userMap['userA'].getUsername()} = <span th:text="${userMap['userA'].getUsername()}"></span></li>
+</ul>
+
+<h1>지역 변수 - (th:with)</h1>
+<!-- 타임리프 내부에서 th:with 를 사용해 지역변수를 선언해줄 수 있다.
+ -->
+<div th:with="first=${users[0]}">
+    <p>처음 사람의 이름은 <span th:text="${first.username}"></span></p>
+</div>
+
+</body>
+</html>
