@@ -7,12 +7,20 @@
 <body>
 <h1>부분 포함</h1>
 <h2>부분 포함 insert</h2>
+<!--
+template/fragment/footer.html을 가져다가 넣는다.
+insert는 가져다가 넣는것이다.
+-->
 <div th:insert="~{template/fragment/footer :: copy}"></div>
 <h2>부분 포함 replace</h2>
+<!--
+replace는 태그 자체를 대상 파일로 대체해버린다.
+-->
 <div th:replace="~{template/fragment/footer :: copy}"></div>
 <h2>부분 포함 단순 표현식</h2>
 <div th:replace="template/fragment/footer :: copy"></div>
 <h1>파라미터 사용</h1>
+<!-- copyParam에 파라미터를 데이터1, 데이터2 이렇게 넣어줫기때문에 데이터1, 데이터2가 출력된다. -->
 <div th:replace="~{template/fragment/footer :: copyParam ('데이터1', '데이터2')}"></div>
 </body>
 </html>

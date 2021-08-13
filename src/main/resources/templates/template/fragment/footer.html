@@ -5,9 +5,13 @@
 -->
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
+<!-- th:fragment="copy"라고 해주면, 해당 footer의 이름을 copy로 지정해준다.-->
 <footer th:fragment="copy">
     푸터 자리 입니다.
 </footer>
+<!--
+th:fragment="copyParam (첫번째 파라미터, 두번쨰 파라미터,~~)" 요런식으로 하면 파라미터를 넣어줄 수 도 있다.
+-->
 <footer th:fragment="copyParam (param1, param2)">
     <p>파라미터 자리 입니다.</p>
     <p th:text="${param1}"></p>

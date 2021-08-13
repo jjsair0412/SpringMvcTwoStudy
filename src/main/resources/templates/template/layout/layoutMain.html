@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--
+해당 html파일이 컨트롤러에서 호출되기 시작하면서
+head에 th:replace로 common_header(~{::title},~{::link}) ,
+타이틀과 link에 관련된것을 base.html로 넘긴다.
+
+그래서 전체 레이아웃은 남아있는데, link와 title만 base,html의 소스로 변환되게 된다.
+
+그니까 base.html이라는 head에 관련된 큰 틀이 있고, 부분부분만 전달해서 완성한다.
+
+head태그의 큰 부분은 다른곳에서 공통적으로 만들어놓고
+추가부분은 layoutMain.html에서 넘겨준다.
+-->
+<head th:replace="template/layout/base :: common_header(~{::title},~{::link})">
+    <title>메인 타이틀</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/themes/smoothness/jquery-ui.css}">
+</head>
+<body>
+메인 컨텐츠
+</body>
+</html>
