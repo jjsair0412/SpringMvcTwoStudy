@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- 자바스크립트 인라인 사용 전 -->
+<script>
+    var username = [[${user.username}]];
+    var age = [[${user.age}]];
+    //자바스크립트 내추럴 템플릿
+    <!-- 주석부분이 랜더링되지않기때문에 username2에는 test username이 들어간다 -->
+    var username2 = /*[[${user.username}]]*/ "test username";
+    //객체
+    var user = [[${user}]];
+</script>
+<!-- 자바스크립트 인라인 사용 후 -->
+<script th:inline="javascript">
+    var username = [[${user.username}]];
+    var age = [[${user.age}]];
+    //자바스크립트 내추럴 템플릿
+    <!-- 자바스크립트 인라인을 사용했기 때문에, 주석부분이 랜더링되고 user.username값이 정상 출력되게 된다. -->
+    var username2 = /*[[${user.username}]]*/ "test username";
+    //객체
+    <!-- 또한 객체를그냥 집어넣어주면 자동으로 json형식변환을 통해서 출력되게 된다. -->
+    var user = [[${user}]];
+</script>
+
+<!-- 자바스크립트 인라인 each -->
+<script th:inline="javascript">
+
+    [# th:each="user, stat : ${users}"]
+    var user[[${stat.count}]] = [[${user}]];
+    [/]
+
+    <!--  인라인 each 실행 결과
+   var user1 = {"username":"UserA","age":10};
+   var user2 = {"username":"UserB","age":20};
+   var user3 = {"username":"UserC","age":30};
+   -->
+</script>
+
+</body>
+</html>

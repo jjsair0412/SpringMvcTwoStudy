@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>속성 설정</h1>
+<!--
+ 기존의 name을 지워버리고 th:name으로 바꿔준다.
+ 그니까 결과는 userA가 찍히게 된다.
+ 아래 코드의 결과 :
+<input type="text" name="userA" />
+-->
+<input type="text" name="mock" th:name="userA" />
+<!--
+속성을 추가해줄 수도 있다.
+아래 속성 추가 코드들의 결과 :
+첫번째는 class에 앞에 공백이 있기 때문에 text large가 된다.
+두번째는 class에 뒤에 공백이 있기 때문에 large text가 된다.
+세번째 classappend는 클래스이름 text뒤에 한칸공백을 주고 large가 붙는다.
+- th:attrappend = <input type="text" class="text large" /><br/>
+- th:attrprepend = <input type="text" class="large text" /><br/>
+- th:classappend = <input type="text" class="text large" /><br/>
+-->
+<h1>속성 추가</h1>
+- th:attrappend = <input type="text" class="text" th:attrappend="class=' large'" /><br/>
+- th:attrprepend = <input type="text" class="text" th:attrprepend="class='large '" /><br/>
+- th:classappend = <input type="text" class="text" th:classappend="large" /><br/>
+<!--
+세번째 예제 html에서는 checked라는 속성만 있다면 무조건 체크처리가 된다.
+HTML에서 checked속성은 checked 속성과 관계 없이 얘만 있어도 무조건 체크가되기때문에 개발하기 불편하다.
+타임리프에선 첫번째와 두번째처럼
+th:checked라는 속성을 줘서 처음부터 체크가 된 상태에서 랜더링될 것인지, (th:checked="true")
+체크가 안됀 상태에서 랜더링될 것인지 (th:checked="false")
+선택할 수 있다.
+아래 checked처리의 결과 :
+- checked o <input type="checkbox" name="active" checked="checked" /><br/>
+- checked x <input type="checkbox" name="active" /><br/>
+- checked=false <input type="checkbox" name="active" checked="false" /><br/>
+-->
+<h1>checked 처리</h1>
+- checked o <input type="checkbox" name="active" th:checked="true" /><br/>
+- checked x <input type="checkbox" name="active" th:checked="false" /><br/>
+- checked=false <input type="checkbox" name="active" checked="false" /><br/>
+</body>
+</html>

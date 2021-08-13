@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>URL 링크</h1>
+<ul>
+    <!-- 바로 밑 예제의 결과 : /hello -->
+    <li><a th:href="@{/hello}">basic url</a></li>
+    <!-- 해당 링크를 클릭했을 때,
+      URL에 쿼리파라미터도 같이 붙여주고 싶을 때 아래처럼 작성한다.
+      model을 통해 넘어온 data1, data2는 각각 param1과 param2에 붙어있다.
+      결과 : /hello?param1=data1&param2=data2 -->
+    <li><a th:href="@{/hello(param1=${param1}, param2=${param2})}">hello query param</a></li>
+    <!-- 바로 밑 예제의 결과 : /hello/data1/data2
+     URL 경로에 model을 통해 넘겨준 값을 넣어주고 싶을 때 아래처럼 작성한다.-->
+    <li><a th:href="@{/hello/{param1}/{param2}(param1=${param1}, param2=${param2})}">path variable</a></li>
+    <!-- 결과 : /hello/data1?param2=data2
+    model을 통해 넘겨준 값을 쿼리파라미터로 붙이고 URL경로로도 쓰고싶으면 한번에 아래처럼 붙여주면 된다.
+    param2가 urL경로에 들어갈 자리가 없기때문에 그냥 쿼리파라미터로 붙어버린다.
+     -->
+    <li><a th:href="@{/hello/{param1}(param1=${param1}, param2=${param2})}">path variable + query parameter</a></li>
+</ul>
+</body>
+</html>
